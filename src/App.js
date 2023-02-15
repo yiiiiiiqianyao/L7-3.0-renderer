@@ -1,15 +1,7 @@
 import React from 'react';
 import Scene from './core/scene';
-import PlaneGeometry from './geometry/plane';
-import {
-  VertexAttributeBufferIndex,
-  VertexAttributeLocation,
-} from '@antv/g-plugin-3d';
-import MeshBasicMaterial from './material/MeshBasicMaterial';
-import Mesh from './core/mesh'
-import BufferAttribute from './geometry/BufferAttribute';
-import BufferElement from './geometry/BufferElement'
 
+import PlaneLayer from './layers/plane'
 class App extends React.Component {
   componentDidMount() {
     const scene = new Scene('container')
@@ -18,24 +10,13 @@ class App extends React.Component {
       const data = [
         -100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, -100.0, 100.0, 100.0,
         -100.0, 100.0, -100.0, -100.0, 100.0, -100.0, 100.0, 100.0,
-      ]
-  
-      const attribute = new BufferAttribute(data, 6);
-      const element = new BufferElement(VertexAttributeLocation.POSITION, VertexAttributeBufferIndex.POSITION);
+      ];
+   
+      const planeLayer = new PlaneLayer(device, data)
       
-      const bufferGeometry = new PlaneGeometry(device);
-      bufferGeometry.setAttribute(element, attribute);
-      
-      const basicMaterial = new MeshBasicMaterial({
-        fill: '#1890FF',
-        opacity: 1,
-      })
+      planeLayer.mesh.setPosition(300, 250, 0);
 
-      const mesh = new Mesh(bufferGeometry, basicMaterial);
-      mesh.setPosition(300, 250, 0);
-
-      scene.add(mesh);
-      
+      scene.addLayer(planeLayer)
     })
     
   }

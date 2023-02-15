@@ -3,6 +3,11 @@ import {
     MeshBasicMaterial
   } from '@antv/g-plugin-3d';
 
+/**
+ * g-webgl 提供的 Mesh 类将 geometry、material 混合在 style 中使用，现在提供新的 Mesh 类
+ * 新的 Mesh 类用于表示一个 3D 渲染对象，其中 geometry 表示网格信息，material 表示材质信息
+ */
+
 export default class Mesh{
     constructor(geometry, material) {
         this.device = geometry.device

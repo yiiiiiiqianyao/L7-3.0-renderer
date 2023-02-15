@@ -47,6 +47,11 @@ export default class Scene extends EventEmitter{
     this.canvas.appendChild(mesh.mesh);
   }
 
+  addLayer(layer) {
+    if(!this.ready) return;
+    this.canvas.appendChild(layer.mesh);
+  }
+
   destroy() {
     if(!this.ready) return;
     // this.canvas.destroy();
